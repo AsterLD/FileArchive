@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.getUsername()}"></title>
+    <link th:href="@{/css/pageStyle.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="main-block">
+    <header th:insert="fragment/header"></header>
+    <div class="element-block">
+        <p class="middle-text"> Пользователь: <a th:text="${user.getUsername()}"></a></p>
+        <div class="element-block">
+            Роли:
+            <div th:each="role : ${T(com.ld.filearchive.models.Role).values()}">
+                <input type="checkbox" th:value="${role}" th:name="${role}" th:text="${role}" th:checked="${user.getRoles().contains(role)}" disabled>
+            </div>
+        </div>
+        <div class="element-block">
+            <p><a class="middle-text" th:href="@{/users/{username}/edit(username=${user.getUsername()})}"> Редактировать</a></p>
+            <form th:method="DELETE" th:action="@{/users/{username}(username=${user.getUsername()})}">
+                <input type="submit" value="Удалить пользователя"/>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

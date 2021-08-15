@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог</title>
+    <link th:href="@{/css/pageStyle.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="main-block">
+    <header th:insert="fragment/header"></header>
+    <div class="inner-block">
+        <div class="inner-block" th:each="category : ${categoryList}">
+            <p><a class="title-text" th:text="${category.getCategoryTitle()}"
+                  th:href="@{/categories/{categoryFolder}(categoryFolder=${category.getCategoryFolderName()})}"></a></p>
+            <p><a th:text="${category.getCategoryDescription()}"></a></p>
+            <form th:method="DELETE" th:action="@{/categories/{categoryId}(categoryId=${category.getCategoryId()})}">
+                <p><input type="submit" value="Удалить раздел"/></p>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

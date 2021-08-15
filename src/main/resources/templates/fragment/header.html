@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/headerStyle.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<header th:fragment="header" class="header-block">
+    <div class="navigation-block">
+        <a class="header-text" th:href="@{/}">Главная</a>
+        <a class="header-text" th:href="@{/categories}">Каталог</a>
+        <a class="header-text" th:href="@{/users}">Пользователи</a>
+        <a class="header-text" th:href="@{/categories/new}">Добавить раздел</a>
+        <a sec:authorize ="!isAnonymous()" class="header-text" th:href="@{/content/new}">Загрузить файл</a>
+    </div>
+    <div class="user-block">
+        <div sec:authorize ="isAnonymous()">
+            <a class="header-text" th:href="@{/login}">Вход</a>
+            <a class="header-text" th:href="@{/registration}">Регистрация</a>
+        </div>
+        <div sec:authorize ="!isAnonymous()">
+            <form th:action="@{/logout}" th:method="GET">
+                <a class="header-text" th:text="'Пользователь: ' + ${#authentication.getName()}"></a>
+                <input type="submit" value="Выйти"/>
+            </form>
+        </div>
+    </div>
+</header>
+</body>
+</html>

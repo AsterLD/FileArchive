@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый раздел</title>
+    <link th:href="@{/css/pageStyle.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="main-block">
+    <header th:insert="fragment/header"></header>
+    <form class="inner-block" th:method="POST" th:action="@{/categories}">
+        <p>Название раздела:</p>
+        <p><input type="text" name="categoryTitle"/></p>
+        <p>Описание раздела:</p>
+        <p><input type="text" name="categoryDescription"/></p>
+        <p>Название папки:</p>
+        <p><input type="text" name="categoryFolderName"/></p>
+        <p><input type="submit" value="Создать новый раздел"/></p>
+    </form>
+</div>
+</body>
+</html>

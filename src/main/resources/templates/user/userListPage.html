@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+    <link th:href="@{/css/pageStyle.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="main-block">
+    <header th:insert="fragment/header"></header>
+    <form class="element-block" th:action="@{/users/search}">
+        <p class="link-text-without-decoration">Поиск пользователей:
+            <input type="text" name="search"/>
+            <input type="submit" value="Поиск"/>
+        </p>
+    </form>
+    <div class="element-block" th:if="${userList.size() > 0}">
+        <p class="title-text">Список пользователей:</p>
+        <div class="inner-block" th:each="user : ${userList}">
+            <p><a class="middle-text" th:href="@{/users/{username}(username=${user.getUsername()})}" th:text="${user.getUsername()}"></a></p>
+        </div>
+    </div>
+    <div class="element-block" th:if="${userList.size() == 0}">
+        <p class="title-text" >Пользователей с таким именем не обнаружено!</p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Аутентификация</title>
+    <link th:href="@{/css/pageStyle.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="main-block">
+    <header th:insert="fragment/header"></header>
+    <div class="authorization-block">
+        <form th:action="@{/login}" method="POST">
+            <p>Имя пользователя:</p>
+            <p><input type="text" name="username"/></p>
+            <p>Пароль:</p>
+            <p><input type="password" name="password"/></p>
+            <p><input type="submit" value="Войти"/></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

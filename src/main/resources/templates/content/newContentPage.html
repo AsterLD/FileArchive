@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Загрузить файл</title>
+    <link th:href="@{/css/pageStyle.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="main-block">
+    <header th:insert="fragment/header"></header>
+    <form class="inner-block" th:action="@{/content}" th:method="POST" enctype="multipart/form-data">
+        <p>Название файла: </p>
+        <p><input type="text"  name="contentTitle" required/></p>
+        <p>Файл: </p>
+        <p><input type="file" name="file"></p>
+        <select name="contentCategoryId" >
+            <option th:each="category : ${categoryList}"
+                    th:value="${category.getCategoryId()}"
+                    th:text="${category.getCategoryTitle()}">
+            </option>
+        </select>
+        <p>Описание файла: </p>
+        <p><textarea rows="20" cols="90" name="contentDescription" required></textarea></p>
+        <p>Отображать в общей ленте? <input type="checkbox" name="availableForAll"/></p>
+        <input type="submit" value="Создать"/>
+    </form>
+</div>
+</body>
+</html>

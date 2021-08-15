@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${content.getContentTitle()}"></title>
+    <link th:href="@{/css/pageStyle.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="main-block">
+    <header th:insert="fragment/header"></header>
+    <div class="inner-block">
+        <p><a class="title-text" th:text="${content.getContentTitle()}"></a></p>
+        <p><a class="middle-text" th:text="${content.getContentDescription()}"></a></p>
+        <p><a class="middle-text" th:href="@{/content/download/{filename}(filename=${content.getContentFileName()})}" th:text="Скачать"></a></p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="content : ${contentList}">
+    <p><a th:text="${content.getContentTitle()}"></a></p>
+    <p><a th:text="${content.getContentDescription()}"></a></p>
+    <form th:method="DELETE" th:action="@{/upload/{contentId}(contentId=${content.getContentId()})}">
+        <p><input type="submit" value="Удалить файл"/></p>
+    </form>
+    <hr/>
+</div>
+<a th:href="@{/upload/new}"> Загрузить файл</a>
+</body>
+</html>

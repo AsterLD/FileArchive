@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/pageStyle.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="main-block">
+    <header th:insert="fragment/header"></header>
+    <div class="inner-block" th:if="${contentList.size() == 0}">
+        <p class="title-text" > На данный момент, в разделе отсутствуют файлы.</p>
+    </div>
+    <div th:if="${contentList.size() > 0}" class="inner-block">
+        <div class="inner-block" th:each="content : ${contentList}">
+            <p><a class="title-text" th:text="${content.getContentTitle()}" th:href="@{/content/{contentId}(contentId=${content.getContentId()})}" ></a></p>
+            <p><a th:text="${content.getContentDescription()}"></a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
